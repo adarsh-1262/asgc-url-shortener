@@ -14,14 +14,11 @@ const UrlShortener = () => {
     }
 
     try {
-        console.log("Sending request to:", import.meta.env.VITE_BACKEND_URL);
         const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/shorten`, { originalUrl });
         
-        console.log("Response:", res.data);
         setShortUrl(`${import.meta.env.VITE_BACKEND_URL}/${res.data.shortUrl}`);
         toast.success("Short URL created successfully!");
     } catch (error) {
-        console.error("Error in API Call:", error.response ? error.response.data : error.message);
         toast.error("Failed to shorten URL!");
     }
 };
